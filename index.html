@@ -8,7 +8,12 @@
       (() => {
         const saved = localStorage.getItem("vexelize-theme");
         const theme = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        const savedLanguage = localStorage.getItem("vexelize-language");
+        const language = savedLanguage === "en" || savedLanguage === "zh"
+          ? savedLanguage
+          : (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
         document.documentElement.dataset.theme = theme;
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
       })();
     </script>
     <link rel="stylesheet" href="styles.css" />
@@ -25,6 +30,10 @@
           <span id="saveState">已保存到本地</span>
         </div>
         <div class="top-actions">
+          <select class="language-select" id="languageSelect" aria-label="语言">
+            <option value="zh">中文</option>
+            <option value="en">EN</option>
+          </select>
           <button class="theme-toggle" id="themeToggle" title="切换深色模式" aria-label="切换深色模式"><i data-lucide="moon" class="theme-icon theme-moon" aria-hidden="true"></i><i data-lucide="sun" class="theme-icon theme-sun" aria-hidden="true"></i></button>
           <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden />
           <button class="btn secondary" id="importBtn"><i data-lucide="upload" aria-hidden="true"></i> 导入图片</button>
@@ -86,7 +95,7 @@
           <footer class="statusbar">
             <div><span class="status-dot"></span><span id="pixelInfo">24 × 24 px</span></div>
             <div id="cursorInfo">X 0&nbsp;&nbsp;Y 0</div>
-            <div><span id="colorCount">8</span> 色&nbsp;&nbsp;·&nbsp;&nbsp;<span id="nodeCount">0</span> 个 SVG 节点</div>
+            <div><span id="colorCount">8</span><span id="colorCountLabel"> 色</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="nodeCount">0</span><span id="nodeCountLabel"> 个 SVG 节点</span></div>
           </footer>
         </section>
 

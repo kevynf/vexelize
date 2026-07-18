@@ -187,6 +187,18 @@ input[type="number"]::-webkit-inner-spin-button {
 .document-title span { display: block; margin-top: 1px; color: var(--muted); font-size: var(--text-xs); }
 
 .top-actions { display: flex; gap: 8px; }
+.language-select {
+  height: 34px;
+  padding: 0 24px 0 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-ui);
+  outline: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--text-xs);
+  cursor: pointer;
+}
+.language-select:hover, .language-select:focus { border-color: var(--muted); }
 .btn {
   min-height: 34px;
   padding: 0 14px;
@@ -609,10 +621,11 @@ input[type="range"] { width: 100%; height: 3px; margin: 0; accent-color: var(--a
 }
 
 @media (max-width: 560px) {
-  .topbar { height: 54px; grid-template-columns: 1fr auto; padding: 0 10px; }
+  .topbar { height: 54px; grid-template-columns: 1fr auto; gap: 8px; padding: 0 10px; }
   .brand { font-size: var(--text-brand); }
   .brand-mark { width: 21px; height: 21px; }
   .top-actions .secondary { display: none; }
+  .language-select { width: 44px; padding-inline: 5px; }
   .top-actions .btn { padding: 0 10px; }
   .workspace { grid-template-columns: 44px minmax(0, 1fr); grid-template-rows: 530px auto; }
   .toolrail { padding-inline: 4px; }

@@ -14,6 +14,77 @@
   let svgPreviewUrl = null;
   window.lucide?.createIcons({ attrs: { "stroke-width": 1.75 } });
 
+  const I18N = {
+    zh: {
+      title: "Vexelize - 像素画规整与 SVG 转换", home: "Vexelize 首页", projectName: "项目名称", untitled: "未命名像素画",
+      saved: "已保存到本地", saving: "正在保存…", language: "语言", themeToLight: "切换浅色模式", themeToDark: "切换深色模式",
+      import: "导入图片", export: "导出 SVG", tools: "绘图工具", pencil: "画笔", eraser: "橡皮擦", fill: "填充", picker: "吸色",
+      colorTool: "选择当前颜色；右下角方格表示透明色", currentColor: "当前颜色", swapColors: "切换前景与透明色",
+      undo: "撤销", redo: "重做", canvas: "画布", canvasWidth: "画布宽度", canvasHeight: "画布高度", apply: "应用",
+      zoomOut: "缩小", zoomIn: "放大", fit: "适应", compare: "对比", compareTitle: "原图与规整结果对比", editor: "像素画编辑画布",
+      original: "原图", normalized: "规整后", colors: " 色", svgNodes: " 个 SVG 节点", tabRefine: "规整", tabPalette: "调色板",
+      sourceImage: "源图像", dropImage: "拖入图片或点击选择", maxFile: "PNG / JPG / WebP / GIF · 最大 10 MB", sampling: "像素采样", live: "实时",
+      detectGrid: "自动识别最佳格点", importToAnalyze: "导入图片后自动分析", analyze: "分析", retest: "重测", analyzing: "分析中", recognized: "已识别",
+      targetWidth: "目标宽度", colorCount: "颜色数量", colorUnit: "色", alphaThreshold: "透明阈值", rules: "规整规则", removeIsolated: "移除孤立像素",
+      removeIsolatedDesc: "合并单点噪声至邻近色", smoothEdges: "平滑锯齿", smoothEdgesDesc: "修正不连续的像素阶梯",
+      mergeColors: "合并相近颜色", mergeColorsDesc: "收敛视觉近似的色值", colorTolerance: "颜色容差", applyRefine: "应用规整",
+      currentPalette: "当前调色板", sortLightness: "按明度排序", paletteHelp: "点击色块选择颜色，双击可替换画布中的该颜色。", paletteEmpty: "画布中还没有颜色",
+      vectorOutput: "矢量输出", pixelSize: "单像素尺寸", mergeBlocks: "合并连续色块", mergeBlocksDesc: "显著减少 SVG 节点",
+      includeBackground: "包含背景", includeBackgroundDesc: "以指定颜色铺满画布", backgroundColor: "背景色", preview: "预览", copyCode: "复制代码", downloadSvg: "下载 SVG",
+      svgPreview: "SVG 输出预览", nodesCount: "{count} 个节点", svgDownloaded: "SVG 已下载", copySuccess: "SVG 代码已复制", clipboardDenied: "浏览器未允许访问剪贴板",
+      importFirst: "请先导入一张图片", recommendedGrid: "推荐 {columns} × {rows} · 置信度 {confidence}%", bestGrid: "最佳格点：{columns} × {rows}",
+      validImage: "请选择有效的图片文件", imageTooLarge: "图片不能超过 10 MB", imageLoaded: "图片已载入，正在识别最佳格点", refineApplied: "规整规则已应用", rename: "双击重命名"
+    },
+    en: {
+      title: "Vexelize - Pixel Art Normalizer & SVG Export", home: "Vexelize home", projectName: "Project name", untitled: "Untitled pixel art",
+      saved: "Saved locally", saving: "Saving...", language: "Language", themeToLight: "Switch to light mode", themeToDark: "Switch to dark mode",
+      import: "Import image", export: "Export SVG", tools: "Drawing tools", pencil: "Pencil", eraser: "Eraser", fill: "Fill", picker: "Eyedropper",
+      colorTool: "Choose current color; the lower-right square represents transparency", currentColor: "Current color", swapColors: "Switch between foreground and transparency",
+      undo: "Undo", redo: "Redo", canvas: "Canvas", canvasWidth: "Canvas width", canvasHeight: "Canvas height", apply: "Apply",
+      zoomOut: "Zoom out", zoomIn: "Zoom in", fit: "Fit", compare: "Compare", compareTitle: "Compare source image and normalized result", editor: "Pixel art editor",
+      original: "Original", normalized: "Normalized", colors: " colors", svgNodes: " SVG nodes", tabRefine: "Refine", tabPalette: "Palette",
+      sourceImage: "Source image", dropImage: "Drop an image or click to choose", maxFile: "PNG / JPG / WebP / GIF · Up to 10 MB", sampling: "Pixel sampling", live: "Live",
+      detectGrid: "Detect the best pixel grid", importToAnalyze: "Import an image to analyze it", analyze: "Analyze", retest: "Retest", analyzing: "Analyzing", recognized: "Detected",
+      targetWidth: "Target width", colorCount: "Color count", colorUnit: "colors", alphaThreshold: "Alpha threshold", rules: "Refinement rules", removeIsolated: "Remove isolated pixels",
+      removeIsolatedDesc: "Merge one-pixel noise into nearby colors", smoothEdges: "Smooth jagged edges", smoothEdgesDesc: "Repair discontinuous pixel steps",
+      mergeColors: "Merge similar colors", mergeColorsDesc: "Consolidate visually similar values", colorTolerance: "Color tolerance", applyRefine: "Apply refinement",
+      currentPalette: "Current palette", sortLightness: "Sort by lightness", paletteHelp: "Click a swatch to select it. Double-click to replace that color on the canvas.", paletteEmpty: "No colors on the canvas yet",
+      vectorOutput: "Vector output", pixelSize: "Pixel size", mergeBlocks: "Merge continuous blocks", mergeBlocksDesc: "Significantly reduce SVG nodes",
+      includeBackground: "Include background", includeBackgroundDesc: "Fill the canvas with the selected color", backgroundColor: "Background color", preview: "Preview", copyCode: "Copy code", downloadSvg: "Download SVG",
+      svgPreview: "SVG output preview", nodesCount: "{count} nodes", svgDownloaded: "SVG downloaded", copySuccess: "SVG code copied", clipboardDenied: "Browser clipboard access was denied",
+      importFirst: "Import an image first", recommendedGrid: "Suggested {columns} × {rows} · {confidence}% confidence", bestGrid: "Best grid: {columns} × {rows}",
+      validImage: "Choose a valid image file", imageTooLarge: "Image must be 10 MB or smaller", imageLoaded: "Image loaded. Detecting the best pixel grid", refineApplied: "Refinement rules applied", rename: "Double-click to rename"
+    }
+  };
+  let language = document.documentElement.lang.toLowerCase().startsWith("zh") ? "zh" : "en";
+
+  function t(key, values = {}) {
+    return (I18N[language][key] || key).replace(/\{(\w+)\}/g, (_, name) => values[name] ?? "");
+  }
+
+  function setElementText(element, value) {
+    if (!element) return;
+    const textNode = [...element.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && node.nodeValue.trim());
+    if (textNode) textNode.nodeValue = ` ${value}`;
+    else element.textContent = value;
+  }
+
+  function setText(selector, key) {
+    setElementText($(selector), t(key));
+  }
+
+  function setFieldLabel(inputId, key) {
+    const label = $(inputId)?.closest("label");
+    setElementText(label?.children[0], t(key));
+  }
+
+  function setToggleCopy(inputId, labelKey, descriptionKey) {
+    const label = $(inputId)?.closest("label");
+    if (!label) return;
+    label.querySelector("b").textContent = t(labelKey);
+    label.querySelector("small").textContent = t(descriptionKey);
+  }
+
   function getThemeAccent() {
     return getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#0969da";
   }
@@ -21,8 +92,8 @@
   function applyTheme(theme, persist = true) {
     document.documentElement.dataset.theme = theme;
     const dark = theme === "dark";
-    $("#themeToggle").title = dark ? "切换浅色模式" : "切换深色模式";
-    $("#themeToggle").setAttribute("aria-label", dark ? "切换浅色模式" : "切换深色模式");
+    $("#themeToggle").title = dark ? t("themeToLight") : t("themeToDark");
+    $("#themeToggle").setAttribute("aria-label", dark ? t("themeToLight") : t("themeToDark"));
     if (state.colorFollowsTheme) setColor(getThemeAccent(), true);
     if (persist) localStorage.setItem("vexelize-theme", theme);
     requestAnimationFrame(renderGrid);
@@ -43,13 +114,91 @@
     sourceCrop: null,
     comparing: false,
     compareSplit: .5,
-    gridVisible: true
+    gridVisible: true,
+    detecting: false,
+    gridDetection: null
   };
+
+  function updateDetectionStatus() {
+    const button = $("#detectGridBtn");
+    const tag = $("#samplingTag");
+    if (!button || !tag) return;
+    const result = state.gridDetection;
+    button.disabled = state.detecting;
+    button.classList.toggle("analyzing", state.detecting);
+    button.querySelector("em").textContent = state.detecting ? t("analyzing") : result ? t("retest") : t("analyze");
+    tag.textContent = state.detecting ? t("analyzing") : result ? t("recognized") : t("live");
+    $("#gridHint").textContent = result
+      ? t("recommendedGrid", { columns: result.columns, rows: result.rows, confidence: result.confidence })
+      : t("importToAnalyze");
+  }
+
+  function applyLanguage(nextLanguage, persist = true) {
+    if (!I18N[nextLanguage]) return;
+    const projectName = $("#projectName");
+    const isUntitled = projectName && Object.values(I18N).some((dictionary) => dictionary.untitled === projectName.value);
+    language = nextLanguage;
+    document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+    document.title = t("title");
+    $("#languageSelect").value = language;
+    $("#languageSelect").setAttribute("aria-label", t("language"));
+    if (persist) localStorage.setItem("vexelize-language", language);
+    if (isUntitled) projectName.value = t("untitled");
+
+    $(".brand").setAttribute("aria-label", t("home"));
+    $(".toolrail").setAttribute("aria-label", t("tools"));
+    $("#projectName").setAttribute("aria-label", t("projectName"));
+    $("#projectName").title = t("rename");
+    $("#saveState").textContent = t("saved");
+    $("#colorPicker").setAttribute("aria-label", t("currentColor"));
+    $(".color-tool").title = t("colorTool");
+
+    [["pencil", "pencil", "B"], ["eraser", "eraser", "E"], ["fill", "fill", "G"], ["picker", "picker", "I"]].forEach(([tool, key, shortcut]) => {
+      const button = $(`[data-tool="${tool}"]`);
+      button.title = `${t(key)} (${shortcut})`;
+      button.setAttribute("aria-label", t(key));
+    });
+    [["#undoBtn", "undo", "Ctrl+Z"], ["#redoBtn", "redo", "Ctrl+Shift+Z"], ["#zoomOut", "zoomOut"], ["#zoomIn", "zoomIn"]].forEach(([selector, key, shortcut]) => {
+      const button = $(selector);
+      button.title = shortcut ? `${t(key)} (${shortcut})` : t(key);
+      button.setAttribute("aria-label", t(key));
+    });
+    $("#swapColors").title = t("swapColors");
+    $("#swapColors").setAttribute("aria-label", t("swapColors"));
+    $("#gridWidth").setAttribute("aria-label", t("canvasWidth"));
+    $("#gridHeight").setAttribute("aria-label", t("canvasHeight"));
+    $("#pixelCanvas").setAttribute("aria-label", t("editor"));
+    $("#compareBtn").title = t("compareTitle");
+
+    setText("#importBtn", "import"); setText("#exportBtn", "export"); setText(".size-control > label", "canvas"); setText("#resizeBtn", "apply");
+    setText("#fitBtn", "fit"); setText("#compareBtn", "compare"); setText(".original-label", "original"); setText(".result-label", "normalized");
+    setText('[data-tab="refine"]', "tabRefine"); setText('[data-tab="palette"]', "tabPalette");
+    setText(".source-section h2", "sourceImage"); setText("#dropzone strong", "dropImage"); setText("#dropzone small", "maxFile");
+    const refineSections = $$("#panel-refine > .inspector-section");
+    setElementText(refineSections[1]?.querySelector("h2"), t("sampling"));
+    setElementText(refineSections[2]?.querySelector("h2"), t("rules"));
+    setElementText($("#detectGridBtn").querySelector("b"), t("detectGrid"));
+    setFieldLabel("#sampleWidth", "targetWidth"); setFieldLabel("#maxColors", "colorCount"); setFieldLabel("#alphaThreshold", "alphaThreshold");
+    $("#maxColors").nextElementSibling.textContent = t("colorUnit");
+    setToggleCopy("#removeIsolated", "removeIsolated", "removeIsolatedDesc"); setToggleCopy("#smoothEdges", "smoothEdges", "smoothEdgesDesc");
+    setToggleCopy("#mergeColors", "mergeColors", "mergeColorsDesc"); setFieldLabel("#colorTolerance", "colorTolerance"); setText("#refineBtn", "applyRefine");
+    setText("#panel-palette h2", "currentPalette"); setText("#sortPalette", "sortLightness"); setText("#panel-palette p", "paletteHelp");
+    const svgHeadings = $$("#panel-svg .section-heading h2");
+    setElementText(svgHeadings[0], t("vectorOutput")); setElementText(svgHeadings[1], t("preview"));
+    setFieldLabel("#svgScale", "pixelSize"); setToggleCopy("#mergeRects", "mergeBlocks", "mergeBlocksDesc"); setToggleCopy("#includeBg", "includeBackground", "includeBackgroundDesc");
+    setFieldLabel("#bgColor", "backgroundColor"); setText("#copySvg", "copyCode"); setText("#panelExportBtn", "downloadSvg");
+    $("#colorCountLabel").textContent = t("colors"); $("#nodeCountLabel").textContent = t("svgNodes");
+    updateDetectionStatus();
+    applyTheme(document.documentElement.dataset.theme || "light", false);
+    renderAll();
+  }
 
   function makeBlankCanvas() {
     exitCompare();
     state.sourceImage = null;
     state.sourceCrop = null;
+    state.detecting = false;
+    state.gridDetection = null;
     state.width = 24;
     state.height = 24;
     state.pixels = Array(24 * 24).fill(null);
@@ -168,7 +317,7 @@
   }
 
   function enterCompare() {
-    if (!state.sourceImage) return toast("请先导入一张图片");
+    if (!state.sourceImage) return toast(t("importFirst"));
     state.comparing = true;
     $("#canvasStack").classList.add("comparing");
     $("#compareBtn").classList.add("active");
@@ -251,7 +400,7 @@
         <span class="palette-swatch" style="background:${color}"></span>
         <span class="palette-value">${color}</span>
         <span class="palette-usage">${Math.round(count / total * 100)}%</span>
-      </div>`).join("") || '<p class="palette-empty">画布中还没有颜色</p>';
+      </div>`).join("") || `<p class="palette-empty">${t("paletteEmpty")}</p>`;
   }
 
   function hexToRgb(hex) {
@@ -370,11 +519,11 @@
     if (svgPreviewUrl) URL.revokeObjectURL(svgPreviewUrl);
     svgPreviewUrl = URL.createObjectURL(new Blob([data.svg], { type: "image/svg+xml" }));
     const image = new Image();
-    image.alt = "SVG 输出预览";
+    image.alt = t("svgPreview");
     image.src = svgPreviewUrl;
     $("#svgPreview").replaceChildren(image);
     $("#nodeCount").textContent = data.nodes;
-    $("#exportNodes").textContent = `${data.nodes} nodes`;
+    $("#exportNodes").textContent = t("nodesCount", { count: data.nodes });
     $("#exportDimensions").textContent = `${data.width} × ${data.height} px`;
     $("#svgSize").textContent = `${(new Blob([data.svg]).size / 1024).toFixed(1)} KB`;
   }
@@ -394,7 +543,7 @@
       }
     }
     $("#nodeCount").textContent = nodes;
-    $("#exportNodes").textContent = `${nodes} nodes`;
+    $("#exportNodes").textContent = t("nodesCount", { count: nodes });
   }
 
   function downloadSvg() {
@@ -407,7 +556,7 @@
     a.download = `${name}.svg`;
     a.click();
     URL.revokeObjectURL(url);
-    toast("SVG 已下载");
+    toast(t("svgDownloaded"));
   }
 
   function quantizeImage(image, detection = null) {
@@ -820,25 +969,19 @@
 
   function autoDetectGrid(showToast = true) {
     if (!state.sourceImage) {
-      toast("请先导入一张图片");
+      toast(t("importFirst"));
       return;
     }
-    const button = $("#detectGridBtn");
-    const tag = $("#samplingTag");
-    button.disabled = true;
-    button.classList.add("analyzing");
-    button.querySelector("em").textContent = "分析中";
-    tag.textContent = "分析中";
+    state.detecting = true;
+    updateDetectionStatus();
     requestAnimationFrame(() => setTimeout(() => {
       const result = detectBestGrid(state.sourceImage);
       $("#sampleWidth").value = result.columns;
-      $("#gridHint").textContent = `推荐 ${result.columns} × ${result.rows} · 置信度 ${result.confidence}%`;
-      button.querySelector("em").textContent = "重测";
-      button.classList.remove("analyzing");
-      button.disabled = false;
-      tag.textContent = "已识别";
+      state.detecting = false;
+      state.gridDetection = result;
+      updateDetectionStatus();
       quantizeImage(state.sourceImage, result);
-      if (showToast) toast(`最佳格点：${result.columns} × ${result.rows}`);
+      if (showToast) toast(t("bestGrid", { columns: result.columns, rows: result.rows }));
     }, 20));
   }
 
@@ -873,14 +1016,15 @@
   }
 
   function loadFile(file) {
-    if (!file || !file.type.startsWith("image/")) return toast("请选择有效的图片文件");
-    if (file.size > 10 * 1024 * 1024) return toast("图片不能超过 10 MB");
+    if (!file || !file.type.startsWith("image/")) return toast(t("validImage"));
+    if (file.size > 10 * 1024 * 1024) return toast(t("imageTooLarge"));
     const image = new Image();
     image.onload = () => {
       state.sourceImage = image;
+      state.gridDetection = null;
       autoDetectGrid(false);
       URL.revokeObjectURL(image.src);
-      toast("图片已载入，正在识别最佳格点");
+      toast(t("imageLoaded"));
     };
     image.src = URL.createObjectURL(file);
   }
@@ -914,7 +1058,7 @@
     }
     state.pixels = next;
     renderAll();
-    toast("规整规则已应用");
+    toast(t("refineApplied"));
   }
 
   let toastTimer;
@@ -928,11 +1072,11 @@
 
   let saveTimer;
   function markChanged() {
-    $("#saveState").textContent = "正在保存…";
+    $("#saveState").textContent = t("saving");
     clearTimeout(saveTimer);
     saveTimer = setTimeout(() => {
       try { localStorage.setItem("vexelize-project", JSON.stringify(snapshot())); } catch (_) { /* storage is optional */ }
-      $("#saveState").textContent = "已保存到本地";
+      $("#saveState").textContent = t("saved");
     }, 350);
   }
 
@@ -953,7 +1097,7 @@
     const nextName = projectName.value.trim();
     projectName.value = commit && nextName ? nextName : nameBeforeEdit;
     projectName.readOnly = true;
-    projectName.title = "双击重命名";
+    projectName.title = t("rename");
     if (commit && projectName.value !== nameBeforeEdit) markChanged();
   }
 
@@ -978,6 +1122,7 @@
   $("#themeToggle").addEventListener("click", () => {
     applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
   });
+  $("#languageSelect").addEventListener("change", (event) => applyLanguage(event.target.value));
 
   canvas.addEventListener("pointerdown", (event) => {
     if (state.comparing) return;
@@ -1071,8 +1216,8 @@
   }));
   [$("#exportBtn"), $("#panelExportBtn")].forEach((el) => el.addEventListener("click", downloadSvg));
   $("#copySvg").addEventListener("click", async () => {
-    try { await navigator.clipboard.writeText(generateSvg().svg); toast("SVG 代码已复制"); }
-    catch (_) { toast("浏览器未允许访问剪贴板"); }
+    try { await navigator.clipboard.writeText(generateSvg().svg); toast(t("copySuccess")); }
+    catch (_) { toast(t("clipboardDenied")); }
   });
 
   document.addEventListener("keydown", (event) => {
@@ -1098,5 +1243,5 @@
     if (saved && saved.width && saved.height && Array.isArray(saved.pixels)) restore(saved, true);
     else makeBlankCanvas();
   } catch (_) { makeBlankCanvas(); }
-  applyTheme(document.documentElement.dataset.theme || "light", false);
+  applyLanguage(language, false);
 })();
