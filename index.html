@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vexelize - 像素画规整与 SVG 转换</title>
+    <script>
+      (() => {
+        const saved = localStorage.getItem("vexelize-theme");
+        const theme = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Vexelize 首页">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span>VEXELiZE</span>
+        </a>
+        <div class="document-title">
+          <input id="projectName" value="未命名像素画" aria-label="项目名称" title="双击重命名" readonly />
+          <span id="saveState">已保存到本地</span>
+        </div>
+        <div class="top-actions">
+          <button class="theme-toggle" id="themeToggle" title="切换深色模式" aria-label="切换深色模式"><i data-lucide="moon" class="theme-icon theme-moon" aria-hidden="true"></i><i data-lucide="sun" class="theme-icon theme-sun" aria-hidden="true"></i></button>
+          <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden />
+          <button class="btn secondary" id="importBtn"><i data-lucide="upload" aria-hidden="true"></i> 导入图片</button>
+          <button class="btn primary" id="exportBtn"><i data-lucide="download" aria-hidden="true"></i> 导出 SVG</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="toolrail" aria-label="绘图工具">
+          <button class="tool active" data-tool="pencil" title="画笔 (B)" aria-label="画笔"><i data-lucide="pencil" aria-hidden="true"></i></button>
+          <button class="tool" data-tool="eraser" title="橡皮擦 (E)" aria-label="橡皮擦"><i data-lucide="eraser" aria-hidden="true"></i></button>
+          <button class="tool" data-tool="fill" title="填充 (G)" aria-label="填充"><i data-lucide="paint-bucket" aria-hidden="true"></i></button>
+          <button class="tool" data-tool="picker" title="吸色 (I)" aria-label="吸色"><i data-lucide="pipette" aria-hidden="true"></i></button>
+          <div class="rail-separator"></div>
+          <label class="color-tool" title="选择当前颜色；右下角方格表示透明色">
+            <input id="colorPicker" type="color" value="#0969da" aria-label="当前颜色" />
+            <span id="colorSwatch"></span>
+          </label>
+          <button class="tool" id="swapColors" title="切换前景与透明色" aria-label="切换前景与透明色"><i data-lucide="arrow-left-right" aria-hidden="true"></i></button>
+        </aside>
+
+        <section class="stage-area">
+          <div class="commandbar">
+            <div class="command-group">
+              <button class="icon-btn" id="undoBtn" title="撤销 (Ctrl+Z)" aria-label="撤销"><i data-lucide="undo-2" aria-hidden="true"></i></button>
+              <button class="icon-btn" id="redoBtn" title="重做 (Ctrl+Shift+Z)" aria-label="重做"><i data-lucide="redo-2" aria-hidden="true"></i></button>
+            </div>
+            <div class="command-group size-control">
+              <label>画布</label>
+              <input id="gridWidth" type="number" min="4" max="256" value="24" aria-label="画布宽度" />
+              <span>×</span>
+              <input id="gridHeight" type="number" min="4" max="256" value="24" aria-label="画布高度" />
+              <button class="text-btn" id="resizeBtn">应用</button>
+            </div>
+            <div class="command-group zoom-control">
+              <button class="icon-btn" id="zoomOut" title="缩小" aria-label="缩小"><i data-lucide="zoom-out" aria-hidden="true"></i></button>
+              <span id="zoomLabel">100%</span>
+              <button class="icon-btn" id="zoomIn" title="放大" aria-label="放大"><i data-lucide="zoom-in" aria-hidden="true"></i></button>
+              <button class="text-btn" id="fitBtn">适应</button>
+            </div>
+            <div class="command-group compare-control">
+              <button class="text-btn compare-btn" id="compareBtn" aria-pressed="false" title="原图与规整结果对比"><i data-lucide="square-split-horizontal" aria-hidden="true"></i> 对比</button>
+            </div>
+          </div>
+
+          <div class="canvas-viewport" id="canvasViewport">
+            <div class="canvas-wrap" id="canvasWrap">
+              <div class="canvas-stack" id="canvasStack">
+                <canvas id="pixelCanvas" width="720" height="720" aria-label="像素画编辑画布"></canvas>
+                <canvas id="gridCanvas" aria-hidden="true"></canvas>
+                <canvas id="compareCanvas" aria-hidden="true"></canvas>
+                <span class="compare-label original-label">原图</span>
+                <span class="compare-label result-label">规整后</span>
+                <div class="compare-divider" id="compareDivider" aria-hidden="true"><span class="compare-handle"><i data-lucide="grip-vertical"></i></span></div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="statusbar">
+            <div><span class="status-dot"></span><span id="pixelInfo">24 × 24 px</span></div>
+            <div id="cursorInfo">X 0&nbsp;&nbsp;Y 0</div>
+            <div><span id="colorCount">8</span> 色&nbsp;&nbsp;·&nbsp;&nbsp;<span id="nodeCount">0</span> 个 SVG 节点</div>
+          </footer>
+        </section>
+
+        <aside class="inspector">
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-tab="refine" role="tab">规整</button>
+            <button class="tab" data-tab="palette" role="tab">调色板</button>
+            <button class="tab" data-tab="svg" role="tab">SVG</button>
+          </div>
+
+          <div class="panel active" id="panel-refine">
+            <section class="inspector-section source-section">
+              <div class="section-heading"><h2>源图像</h2></div>
+              <button class="dropzone" id="dropzone">
+                <i data-lucide="upload" class="drop-icon" aria-hidden="true"></i>
+                <strong>拖入图片或点击选择</strong>
+                <small>PNG / JPG / WebP · 最大 10 MB</small>
+              </button>
+            </section>
+
+            <section class="inspector-section">
+              <div class="section-heading"><h2>像素采样</h2><span class="tag" id="samplingTag">实时</span></div>
+              <button class="detect-grid-btn" id="detectGridBtn">
+                <span class="detect-grid-icon" aria-hidden="true"><i data-lucide="scan-search"></i></span>
+                <span><b>自动识别最佳格点</b><small id="gridHint">导入图片后自动分析</small></span>
+                <em>分析</em>
+              </button>
+              <label class="field-row"><span>目标宽度</span><span class="number-field"><input id="sampleWidth" type="number" min="4" max="256" value="24" /><em>px</em></span></label>
+              <label class="field-row"><span>颜色数量</span><span class="number-field"><input id="maxColors" type="number" min="2" max="256" value="8" /><em>色</em></span></label>
+              <label class="range-row"><span class="control-label"><b>透明阈值</b></span><span class="range-control"><input id="alphaThreshold" type="range" min="0" max="255" value="12" /><output id="alphaValue">12</output></span></label>
+            </section>
+
+            <section class="inspector-section">
+              <div class="section-heading"><h2>规整规则</h2></div>
+              <label class="toggle-row"><span><b>移除孤立像素</b><small>合并单点噪声至邻近色</small></span><input id="removeIsolated" type="checkbox" checked /><i></i></label>
+              <label class="toggle-row"><span><b>平滑锯齿</b><small>修正不连续的像素阶梯</small></span><input id="smoothEdges" type="checkbox" checked /><i></i></label>
+              <label class="toggle-row"><span><b>合并相近颜色</b><small>收敛视觉近似的色值</small></span><input id="mergeColors" type="checkbox" checked /><i></i></label>
+              <label class="range-row compact"><span class="control-label"><b>颜色容差</b></span><span class="range-control"><input id="colorTolerance" type="range" min="0" max="64" value="18" /><output id="toleranceValue">18</output></span></label>
+              <button class="btn primary refine-btn" id="refineBtn"><i data-lucide="wand-sparkles" aria-hidden="true"></i> 应用规整</button>
+            </section>
+          </div>
+
+          <div class="panel" id="panel-palette">
+            <section class="inspector-section palette-header">
+              <div class="section-heading"><h2>当前调色板</h2><button class="link-button" id="sortPalette">按明度排序</button></div>
+              <p>点击色块选择颜色，双击可替换画布中的该颜色。</p>
+            </section>
+            <div class="palette-list" id="paletteList"></div>
+          </div>
+
+          <div class="panel" id="panel-svg">
+            <section class="inspector-section">
+              <div class="section-heading"><h2>矢量输出</h2><span class="tag neutral" id="svgSize">0 KB</span></div>
+              <label class="field-row"><span>单像素尺寸</span><span class="number-field"><input id="svgScale" type="number" min="1" max="128" value="16" /><em>px</em></span></label>
+              <label class="toggle-row"><span><b>合并连续色块</b><small>显著减少 SVG 节点</small></span><input id="mergeRects" type="checkbox" checked /><i></i></label>
+              <label class="toggle-row"><span><b>包含背景</b><small>以指定颜色铺满画布</small></span><input id="includeBg" type="checkbox" /><i></i></label>
+              <label class="field-row bg-field disabled" id="bgField"><span>背景色</span><input id="bgColor" type="color" value="#ffffff" /></label>
+            </section>
+            <section class="inspector-section preview-section">
+              <div class="section-heading"><h2>预览</h2><button class="link-button" id="copySvg">复制代码</button></div>
+              <div class="svg-preview" id="svgPreview"></div>
+              <div class="export-meta"><span id="exportDimensions">384 × 384 px</span><span id="exportNodes">0 nodes</span></div>
+              <button class="btn primary wide" id="panelExportBtn"><i data-lucide="download" aria-hidden="true"></i> 下载 SVG</button>
+            </section>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="vendor/lucide/lucide.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
