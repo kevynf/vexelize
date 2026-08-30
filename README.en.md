@@ -1,6 +1,8 @@
-# VEXELiZE
-
-[中文](README.md) | [English](README.en.md)
+<div align="center">
+  <img src="favicon.svg" width="72" alt="VEXELiZE icon" />
+  <h1>VEXELiZE</h1>
+  <p><a href="README.md">中文</a> | <a href="README.en.md">English</a></p>
+</div>
 
 Turn pixel-style images that are not quite pixel art into clean, orderly artwork.
 
@@ -129,7 +131,8 @@ For example, `kevynf` is available at <https://kevynf.github.io/vexelize/>. The 
 
 - `index.html`: application entry point and UI structure.
 - `styles.css`: theme, layout, and responsive styles.
-- `app.js`: editing, grid detection, normalization, and SVG export logic.
+- `app.js`: editing, normalization, and SVG export logic, plus the UI wiring for the algorithms.
+- `algo.js`: pure grid-detection and color-quantization algorithms, UI-independent and testable in isolation.
 - `vendor/lucide/`: Lucide icon script and license.
 - `vendor/fonts/jersey-10/`: Jersey 10 font and OFL license.
 

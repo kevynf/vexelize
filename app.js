@@ -17,7 +17,7 @@
   const I18N = {
     zh: {
       title: "Vexelize - 像素画规整与 SVG 转换", home: "Vexelize 首页", projectName: "项目名称", untitled: "未命名像素画",
-      saved: "已保存到本地", saving: "正在保存…", language: "语言", themeToLight: "切换浅色模式", themeToDark: "切换深色模式",
+      saved: "已保存到本地", saving: "正在保存…", clearCache: "清除本地缓存", cacheCleared: "本地缓存已清除", clearCacheConfirm: "确定清除本地保存的像素画并新建空白画布？", language: "语言", themeToLight: "切换浅色模式", themeToDark: "切换深色模式",
       import: "导入图片", export: "导出 SVG", tools: "绘图工具", pencil: "画笔", eraser: "橡皮擦", fill: "填充", picker: "吸色",
       colorTool: "选择当前颜色；右下角方格表示透明色", currentColor: "当前颜色", swapColors: "切换前景与透明色",
       undo: "撤销", redo: "重做", canvas: "画布", canvasWidth: "画布宽度", canvasHeight: "画布高度", apply: "应用",
@@ -25,19 +25,19 @@
       original: "原图", normalized: "规整后", colors: " 色", svgNodes: " 个 SVG 节点", tabRefine: "规整", tabPalette: "调色板",
       sourceImage: "源图像", dropImage: "拖入图片或点击选择", maxFile: "PNG / JPG / WebP / GIF · 最大 10 MB", sampling: "像素采样", live: "实时",
       detectGrid: "自动识别最佳格点", importToAnalyze: "导入图片后自动分析", analyze: "分析", retest: "重测", analyzing: "分析中", recognized: "已识别",
-      targetWidth: "目标宽度", colorCount: "颜色数量", colorUnit: "色", alphaThreshold: "透明阈值", rules: "规整规则", removeIsolated: "移除孤立像素",
+      targetWidth: "目标宽度", colorCount: "颜色数量", colorUnit: "色", alphaThreshold: "透明阈值", dither: "误差扩散抖动", ditherDesc: "分散量化误差，渐变更平滑", rules: "规整规则", removeIsolated: "移除孤立像素",
       removeIsolatedDesc: "合并单点噪声至邻近色", smoothEdges: "平滑锯齿", smoothEdgesDesc: "修正不连续的像素阶梯",
       mergeColors: "合并相近颜色", mergeColorsDesc: "收敛视觉近似的色值", colorTolerance: "颜色容差", applyRefine: "应用规整",
       currentPalette: "当前调色板", sortLightness: "按明度排序", paletteHelp: "点击色块选择颜色，双击可替换画布中的该颜色。", paletteEmpty: "画布中还没有颜色",
       vectorOutput: "矢量输出", pixelSize: "单像素尺寸", mergeBlocks: "合并连续色块", mergeBlocksDesc: "显著减少 SVG 节点",
       includeBackground: "包含背景", includeBackgroundDesc: "以指定颜色铺满画布", backgroundColor: "背景色", preview: "预览", copyCode: "复制代码", downloadSvg: "下载 SVG",
       svgPreview: "SVG 输出预览", nodesCount: "{count} 个节点", svgDownloaded: "SVG 已下载", copySuccess: "SVG 代码已复制", clipboardDenied: "浏览器未允许访问剪贴板",
-      importFirst: "请先导入一张图片", recommendedGrid: "推荐 {columns} × {rows} · 置信度 {confidence}%", bestGrid: "最佳格点：{columns} × {rows}",
+      importFirst: "请先导入一张图片", recommendedGrid: "推荐 {columns} × {rows} · 置信度 {confidence}%", manualHint: "识别效果一般，可手动调整目标宽度后重新分析", bestGrid: "最佳格点：{columns} × {rows}",
       validImage: "请选择有效的图片文件", imageTooLarge: "图片不能超过 10 MB", imageLoaded: "图片已载入，正在识别最佳格点", refineApplied: "规整规则已应用", rename: "双击重命名"
     },
     en: {
       title: "Vexelize - Pixel Art Normalizer & SVG Export", home: "Vexelize home", projectName: "Project name", untitled: "Untitled pixel art",
-      saved: "Saved locally", saving: "Saving...", language: "Language", themeToLight: "Switch to light mode", themeToDark: "Switch to dark mode",
+      saved: "Saved locally", saving: "Saving...", clearCache: "Clear saved data", cacheCleared: "Saved data cleared", clearCacheConfirm: "Clear the locally saved artwork and start a blank canvas?", language: "Language", themeToLight: "Switch to light mode", themeToDark: "Switch to dark mode",
       import: "Import image", export: "Export SVG", tools: "Drawing tools", pencil: "Pencil", eraser: "Eraser", fill: "Fill", picker: "Eyedropper",
       colorTool: "Choose current color; the lower-right square represents transparency", currentColor: "Current color", swapColors: "Switch between foreground and transparency",
       undo: "Undo", redo: "Redo", canvas: "Canvas", canvasWidth: "Canvas width", canvasHeight: "Canvas height", apply: "Apply",
@@ -45,14 +45,14 @@
       original: "Original", normalized: "Normalized", colors: " colors", svgNodes: " SVG nodes", tabRefine: "Refine", tabPalette: "Palette",
       sourceImage: "Source image", dropImage: "Drop an image or click to choose", maxFile: "PNG / JPG / WebP / GIF · Up to 10 MB", sampling: "Pixel sampling", live: "Live",
       detectGrid: "Detect the best pixel grid", importToAnalyze: "Import an image to analyze it", analyze: "Analyze", retest: "Retest", analyzing: "Analyzing", recognized: "Detected",
-      targetWidth: "Target width", colorCount: "Color count", colorUnit: "colors", alphaThreshold: "Alpha threshold", rules: "Refinement rules", removeIsolated: "Remove isolated pixels",
+      targetWidth: "Target width", colorCount: "Color count", colorUnit: "colors", alphaThreshold: "Alpha threshold", dither: "Error diffusion", ditherDesc: "Smoother gradients via error diffusion", rules: "Refinement rules", removeIsolated: "Remove isolated pixels",
       removeIsolatedDesc: "Merge one-pixel noise into nearby colors", smoothEdges: "Smooth jagged edges", smoothEdgesDesc: "Repair discontinuous pixel steps",
       mergeColors: "Merge similar colors", mergeColorsDesc: "Consolidate visually similar values", colorTolerance: "Color tolerance", applyRefine: "Apply refinement",
       currentPalette: "Current palette", sortLightness: "Sort by lightness", paletteHelp: "Click a swatch to select it. Double-click to replace that color on the canvas.", paletteEmpty: "No colors on the canvas yet",
       vectorOutput: "Vector output", pixelSize: "Pixel size", mergeBlocks: "Merge continuous blocks", mergeBlocksDesc: "Significantly reduce SVG nodes",
       includeBackground: "Include background", includeBackgroundDesc: "Fill the canvas with the selected color", backgroundColor: "Background color", preview: "Preview", copyCode: "Copy code", downloadSvg: "Download SVG",
       svgPreview: "SVG output preview", nodesCount: "{count} nodes", svgDownloaded: "SVG downloaded", copySuccess: "SVG code copied", clipboardDenied: "Browser clipboard access was denied",
-      importFirst: "Import an image first", recommendedGrid: "Suggested {columns} × {rows} · {confidence}% confidence", bestGrid: "Best grid: {columns} × {rows}",
+      importFirst: "Import an image first", recommendedGrid: "Suggested {columns} × {rows} · {confidence}% confidence", manualHint: "Result looks off? Adjust the target width and re-run", bestGrid: "Best grid: {columns} × {rows}",
       validImage: "Choose a valid image file", imageTooLarge: "Image must be 10 MB or smaller", imageLoaded: "Image loaded. Detecting the best pixel grid", refineApplied: "Refinement rules applied", rename: "Double-click to rename"
     }
   };
@@ -128,9 +128,7 @@
     button.classList.toggle("analyzing", state.detecting);
     button.querySelector("em").textContent = state.detecting ? t("analyzing") : result ? t("retest") : t("analyze");
     tag.textContent = state.detecting ? t("analyzing") : result ? t("recognized") : t("live");
-    $("#gridHint").textContent = result
-      ? t("recommendedGrid", { columns: result.columns, rows: result.rows, confidence: result.confidence })
-      : t("importToAnalyze");
+    $("#gridHint").textContent = result ? t("recommendedGrid", { columns: result.columns, rows: result.rows, confidence: result.confidence }) : t("importToAnalyze");
   }
 
   function applyLanguage(nextLanguage, persist = true) {
@@ -182,6 +180,7 @@
     $("#maxColors").nextElementSibling.textContent = t("colorUnit");
     setToggleCopy("#removeIsolated", "removeIsolated", "removeIsolatedDesc"); setToggleCopy("#smoothEdges", "smoothEdges", "smoothEdgesDesc");
     setToggleCopy("#mergeColors", "mergeColors", "mergeColorsDesc"); setFieldLabel("#colorTolerance", "colorTolerance"); setText("#refineBtn", "applyRefine");
+    setToggleCopy("#dither", "dither", "ditherDesc");
     setText("#panel-palette h2", "currentPalette"); setText("#sortPalette", "sortLightness"); setText("#panel-palette p", "paletteHelp");
     const svgHeadings = $$("#panel-svg .section-heading h2");
     setElementText(svgHeadings[0], t("vectorOutput")); setElementText(svgHeadings[1], t("preview"));
@@ -403,14 +402,7 @@
       </div>`).join("") || `<p class="palette-empty">${t("paletteEmpty")}</p>`;
   }
 
-  function hexToRgb(hex) {
-    const n = parseInt(hex.slice(1), 16);
-    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  }
-
-  function rgbToHex(r, g, b) {
-    return `#${[r, g, b].map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, "0")).join("")}`;
-  }
+  const { hexToRgb, rgbToHex, rgbToOklab, oklabToRgb, medianCut } = window.VexelizeAlgo;
 
   function luminance(hex) {
     const [r, g, b] = hexToRgb(hex);
@@ -574,22 +566,26 @@
     let sourceY = 0;
     let sourceWidth = image.naturalWidth || image.width;
     let sourceHeight = image.naturalHeight || image.height;
+    let cellWidth = sourceWidth / targetWidth;
+    let cellHeight = sourceHeight / targetHeight;
     if (detection?.pitchX && detection?.analysisWidth) {
-      const alignAxis = (length, cells, pitch, offset) => {
-        const span = Math.min(length, cells * pitch);
-        let start = offset > pitch / 2 ? offset - pitch : offset;
-        start = Math.max(0, Math.min(length - span, start));
-        return { start, span };
-      };
-      const alignedX = alignAxis(detection.analysisWidth, targetWidth, detection.pitchX, detection.offsetX);
-      const alignedY = alignAxis(detection.analysisHeight, targetHeight, detection.pitchY, detection.offsetY);
-      sourceX = alignedX.start / detection.analysisWidth * sourceWidth;
-      sourceY = alignedY.start / detection.analysisHeight * sourceHeight;
-      sourceWidth = alignedX.span / detection.analysisWidth * sourceWidth;
-      sourceHeight = alignedY.span / detection.analysisHeight * sourceHeight;
+      cellWidth = detection.pitchX / detection.analysisWidth * sourceWidth;
+      cellHeight = detection.pitchY / detection.analysisHeight * sourceHeight;
+      sourceX = (detection.refinedOffsetX ?? detection.offsetX ?? 0) / detection.analysisWidth * sourceWidth;
+      sourceY = (detection.refinedOffsetY ?? detection.offsetY ?? 0) / detection.analysisHeight * sourceHeight;
+      sourceWidth = targetWidth * cellWidth;
+      sourceHeight = targetHeight * cellHeight;
     }
     state.sourceCrop = { x: sourceX, y: sourceY, width: sourceWidth, height: sourceHeight };
-    sctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, sample.width, sample.height);
+    if (sourceX === 0 && sourceY === 0 && cellWidth === sourceWidth / targetWidth && cellHeight === sourceHeight / targetHeight) {
+      sctx.drawImage(image, 0, 0, sourceWidth, sourceHeight, 0, 0, sample.width, sample.height);
+    } else {
+      for (let gy = 0; gy < targetHeight; gy++) {
+        for (let gx = 0; gx < targetWidth; gx++) {
+          sctx.drawImage(image, sourceX + gx * cellWidth, sourceY + gy * cellHeight, cellWidth, cellHeight, gx * sampleFactor, gy * sampleFactor, sampleFactor, sampleFactor);
+        }
+      }
+    }
     const sourceData = sctx.getImageData(0, 0, sample.width, sample.height).data;
     const representatives = [];
     const opaque = [];
@@ -616,357 +612,143 @@
         else {
           const color = channels.map(median);
           representatives.push(color);
-          opaque.push(color);
+          opaque.push(rgbToOklab(...color));
         }
       }
     }
 
     const palette = medianCut(opaque, maxColors);
+    const paletteHex = palette.map((p) => rgbToHex(...oklabToRgb(...p)));
+    const plainCache = new Map();
+    const ditherCache = new Map();
+    const nearestIndexFromRgb = (rgb) => {
+      const key = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+      let index = plainCache.get(key);
+      if (index === undefined) {
+        const lab = rgbToOklab(...rgb);
+        let bestD = Infinity;
+        index = 0;
+        palette.forEach((p, i) => {
+          const d = (lab[0] - p[0]) ** 2 + (lab[1] - p[1]) ** 2 + (lab[2] - p[2]) ** 2;
+          if (d < bestD) { bestD = d; index = i; }
+        });
+        plainCache.set(key, index);
+      }
+      return index;
+    };
+    const nearestIndexFromLab = (lab) => {
+      const key = ((Math.round(lab[0] * 512) + 512) * 4096 + Math.round(lab[1] * 512) + 2048) * 4096 + Math.round(lab[2] * 512) + 2048;
+      let index = ditherCache.get(key);
+      if (index === undefined) {
+        let bestD = Infinity;
+        index = 0;
+        palette.forEach((p, i) => {
+          const d = (lab[0] - p[0]) ** 2 + (lab[1] - p[1]) ** 2 + (lab[2] - p[2]) ** 2;
+          if (d < bestD) { bestD = d; index = i; }
+        });
+        ditherCache.set(key, index);
+      }
+      return index;
+    };
     pushHistory();
     state.width = targetWidth;
     state.height = targetHeight;
-    state.pixels = representatives.map((rgb) => {
-      if (!rgb) return null;
-      else {
-        let best = palette[0];
-        let bestD = Infinity;
-        palette.forEach((p) => {
-          const d = (rgb[0] - p[0]) ** 2 + (rgb[1] - p[1]) ** 2 + (rgb[2] - p[2]) ** 2;
-          if (d < bestD) { bestD = d; best = p; }
-        });
-        return rgbToHex(...best);
+    state.pixels = new Array(representatives.length).fill(null);
+    if ($("#dither").checked && palette.length > 1) {
+      const error = new Float64Array(representatives.length * 3);
+      for (let y = 0; y < targetHeight; y++) {
+        const reverse = y & 1;
+        const forward = reverse ? -1 : 1;
+        for (let step = 0; step < targetWidth; step++) {
+          const x = reverse ? targetWidth - 1 - step : step;
+          const cell = y * targetWidth + x;
+          const rgb = representatives[cell];
+          if (!rgb) continue;
+          const base = cell * 3;
+          const lab = rgbToOklab(...rgb);
+          const dl = lab[0] + error[base];
+          const da = lab[1] + error[base + 1];
+          const db = lab[2] + error[base + 2];
+          const index = nearestIndexFromLab([dl, da, db]);
+          state.pixels[cell] = paletteHex[index];
+          const chosen = palette[index];
+          const el = dl - chosen[0];
+          const ea = da - chosen[1];
+          const eb = db - chosen[2];
+          const spread = (nx, ny, weight) => {
+            if (nx < 0 || nx >= targetWidth || ny >= targetHeight) return;
+            const neighbor = (ny * targetWidth + nx) * 3;
+            error[neighbor] += el * weight;
+            error[neighbor + 1] += ea * weight;
+            error[neighbor + 2] += eb * weight;
+          };
+          spread(x + forward, y, 7 / 16);
+          spread(x - forward, y + 1, 3 / 16);
+          spread(x, y + 1, 5 / 16);
+          spread(x + forward, y + 1, 1 / 16);
+        }
       }
-    });
+    } else {
+      for (let cell = 0; cell < representatives.length; cell++) {
+        const rgb = representatives[cell];
+        state.pixels[cell] = rgb && paletteHex[nearestIndexFromRgb(rgb)];
+      }
+    }
     syncDimensions();
     renderAll();
   }
 
-  function detectNativeGridHints(image) {
+  // Thin DOM wrappers around VexelizeAlgo: prepare pixel buffers, delegate the math.
+  function extractNativeScanlines(image) {
     const sourceWidth = image.naturalWidth || image.width;
     const sourceHeight = image.naturalHeight || image.height;
     const sampleScale = Math.min(1, 4096 / Math.max(sourceWidth, sourceHeight));
     const sampleWidth = Math.max(4, Math.round(sourceWidth * sampleScale));
     const sampleHeight = Math.max(4, Math.round(sourceHeight * sampleScale));
-    const scanCount = 32;
-
-    const sampleAxis = (axis) => {
+    const grab = (axis) => {
       const horizontal = axis === "x";
       const length = horizontal ? sampleWidth : sampleHeight;
       const crossLength = horizontal ? sourceHeight : sourceWidth;
       const canvas = document.createElement("canvas");
-      canvas.width = horizontal ? length : scanCount;
-      canvas.height = horizontal ? scanCount : length;
+      canvas.width = horizontal ? length : 32;
+      canvas.height = horizontal ? 32 : length;
       const context = canvas.getContext("2d", { willReadFrequently: true });
       context.imageSmoothingEnabled = false;
-
-      for (let scan = 0; scan < scanCount; scan++) {
-        const sourcePosition = Math.min(crossLength - 1, Math.floor((scan + .5) * crossLength / scanCount));
-        if (horizontal) {
-          context.drawImage(image, 0, sourcePosition, sourceWidth, 1, 0, scan, length, 1);
-        } else {
-          context.drawImage(image, sourcePosition, 0, 1, sourceHeight, scan, 0, 1, length);
-        }
+      for (let scan = 0; scan < 32; scan++) {
+        const sourcePosition = Math.min(crossLength - 1, Math.floor((scan + .5) * crossLength / 32));
+        if (horizontal) context.drawImage(image, 0, sourcePosition, sourceWidth, 1, 0, scan, length, 1);
+        else context.drawImage(image, sourcePosition, 0, 1, sourceHeight, scan, 0, 1, length);
       }
-
-      const data = context.getImageData(0, 0, canvas.width, canvas.height).data;
-      const transitions = [];
-      for (let scan = 0; scan < scanCount; scan++) {
-        for (let position = 1; position < length; position++) {
-          const previous = horizontal
-            ? (scan * length + position - 1) * 4
-            : ((position - 1) * scanCount + scan) * 4;
-          const current = horizontal
-            ? (scan * length + position) * 4
-            : (position * scanCount + scan) * 4;
-          const strength = Math.max(
-            Math.abs(data[current] - data[previous]),
-            Math.abs(data[current + 1] - data[previous + 1]),
-            Math.abs(data[current + 2] - data[previous + 2]),
-            Math.abs(data[current + 3] - data[previous + 3])
-          );
-          transitions.push([position, strength]);
-        }
+      const raw = context.getImageData(0, 0, canvas.width, canvas.height).data;
+      // Normalize both axes to (position * 32 + scan) * 4 so the algorithm is layout-agnostic.
+      const data = new Uint8ClampedArray(length * 32 * 4);
+      for (let scan = 0; scan < 32; scan++) for (let position = 0; position < length; position++) {
+        const from = horizontal ? (scan * length + position) * 4 : (position * 32 + scan) * 4;
+        const to = (position * 32 + scan) * 4;
+        data[to] = raw[from]; data[to + 1] = raw[from + 1]; data[to + 2] = raw[from + 2]; data[to + 3] = raw[from + 3];
       }
-
-      const strengths = transitions.map((item) => item[1]).sort((a, b) => a - b);
-      const threshold = Math.max(2, strengths[Math.floor(strengths.length * .72)] || 0);
-      const projection = new Float64Array(length);
-      transitions.forEach(([position, strength]) => {
-        if (strength > threshold) projection[position] += strength - threshold;
-      });
-      const total = projection.reduce((sum, value) => sum + value, 0);
-      if (total < 1e-6) return [];
-
-      const minPitch = Math.max(2, Math.floor(length / MAX_GRID_SIZE));
-      const maxPitch = Math.min(512, Math.floor(length / 4));
-      const ranked = [];
-      for (let pitch = minPitch; pitch <= maxPitch; pitch++) {
-        const phases = new Float64Array(pitch);
-        for (let position = 1; position < length; position++) {
-          if (projection[position]) phases[position % pitch] += projection[position];
-        }
-        let offset = 0;
-        for (let phase = 1; phase < pitch; phase++) {
-          if (phases[phase] > phases[offset]) offset = phase;
-        }
-        const aligned = phases[offset] / total;
-        const randomBaseline = 1 / pitch;
-        const evidence = Math.max(0, (aligned - randomBaseline) / Math.max(.01, 1 - randomBaseline));
-        const score = evidence + Math.min(.1, Math.log2(pitch) * .015);
-        if (aligned >= .78) ranked.push({ pitch, offset, aligned, score });
-      }
-      ranked.sort((a, b) => b.score - a.score);
-      const selected = [];
-      for (const candidate of ranked) {
-        if (selected.every((item) => Math.abs(item.pitch - candidate.pitch) > 1)) selected.push(candidate);
-        if (selected.length === 6) break;
-      }
-      return selected;
+      return data;
     };
-
-    return {
-      scale: sampleScale,
-      width: sampleWidth,
-      height: sampleHeight,
-      x: sampleAxis("x"),
-      y: sampleAxis("y")
-    };
+    return { scale: sampleScale, width: sampleWidth, height: sampleHeight, xData: grab("x"), yData: grab("y") };
   }
 
   function detectBestGrid(image) {
-    const nativeHints = detectNativeGridHints(image);
-    const maxSide = 256;
-    const ratio = Math.min(1, maxSide / Math.max(image.naturalWidth || image.width, image.naturalHeight || image.height));
-    const width = Math.max(4, Math.round((image.naturalWidth || image.width) * ratio));
-    const height = Math.max(4, Math.round((image.naturalHeight || image.height) * ratio));
+    const sourceWidth = image.naturalWidth || image.width;
+    const sourceHeight = image.naturalHeight || image.height;
+    const ratio = Math.min(1, 256 / Math.max(sourceWidth, sourceHeight));
+    const width = Math.max(4, Math.round(sourceWidth * ratio));
+    const height = Math.max(4, Math.round(sourceHeight * ratio));
     const analysis = document.createElement("canvas");
     analysis.width = width;
     analysis.height = height;
     const actx = analysis.getContext("2d", { willReadFrequently: true });
     actx.imageSmoothingEnabled = true;
     actx.drawImage(image, 0, 0, width, height);
-    const pixels = actx.getImageData(0, 0, width, height).data;
-    const stride = width + 1;
-    const integral = Array.from({ length: 8 }, () => new Float64Array((width + 1) * (height + 1)));
-    const lab = Array.from({ length: 4 }, () => new Float32Array(width * height));
-
-    const srgbToLinear = (value) => {
-      value /= 255;
-      return value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4;
-    };
-    const toOklab = (r, g, b) => {
-      r = srgbToLinear(r);
-      g = srgbToLinear(g);
-      b = srgbToLinear(b);
-      const l = .4122214708 * r + .5363325363 * g + .0514459929 * b;
-      const m = .2119034982 * r + .6806995451 * g + .1073969566 * b;
-      const s = .0883024619 * r + .2817188376 * g + .6299787005 * b;
-      const ll = Math.cbrt(l);
-      const mm = Math.cbrt(m);
-      const ss = Math.cbrt(s);
-      return [
-        .2104542553 * ll + .793617785 * mm - .0040720468 * ss,
-        1.9779984951 * ll - 2.428592205 * mm + .4505937099 * ss,
-        .0259040371 * ll + .7827717662 * mm - .808675766 * ss
-      ];
-    };
-
-    for (let y = 1; y <= height; y++) {
-      const rowSums = new Float64Array(8);
-      for (let x = 1; x <= width; x++) {
-        const source = ((y - 1) * width + x - 1) * 4;
-        const alpha = pixels[source + 3] / 255;
-        const values = [pixels[source] * alpha, pixels[source + 1] * alpha, pixels[source + 2] * alpha, pixels[source + 3]];
-        const color = toOklab(pixels[source], pixels[source + 1], pixels[source + 2]);
-        const pixelIndex = (y - 1) * width + x - 1;
-        lab[0][pixelIndex] = color[0] * alpha;
-        lab[1][pixelIndex] = color[1] * alpha;
-        lab[2][pixelIndex] = color[2] * alpha;
-        lab[3][pixelIndex] = alpha;
-        const target = y * stride + x;
-        for (let c = 0; c < 4; c++) {
-          rowSums[c] += values[c];
-          rowSums[c + 4] += values[c] * values[c];
-          integral[c][target] = integral[c][target - stride] + rowSums[c];
-          integral[c + 4][target] = integral[c + 4][target - stride] + rowSums[c + 4];
-        }
-      }
-    }
-
-    const areaSum = (table, x0, y0, x1, y1) => table[y1 * stride + x1] - table[y0 * stride + x1] - table[y1 * stride + x0] + table[y0 * stride + x0];
-    const verticalEdges = [];
-    const horizontalEdges = [];
-    const verticalProjection = new Float64Array(width);
-    const horizontalProjection = new Float64Array(height);
-    const perceptualDistance = (a, b) => Math.hypot(
-      (lab[0][a] - lab[0][b]) * 1.25,
-      lab[1][a] - lab[1][b],
-      lab[2][a] - lab[2][b],
-      (lab[3][a] - lab[3][b]) * .55
+    return VexelizeAlgo.detectBestGrid(
+      { width, height, ratio, data: actx.getImageData(0, 0, width, height).data },
+      extractNativeScanlines(image)
     );
-
-    for (let y = 0; y < height; y++) for (let x = 1; x < width; x++) {
-      const index = y * width + x;
-      verticalEdges.push([x, perceptualDistance(index, index - 1)]);
-    }
-    for (let y = 1; y < height; y++) for (let x = 0; x < width; x++) {
-      const index = y * width + x;
-      horizontalEdges.push([y, perceptualDistance(index, index - width)]);
-    }
-
-    const projectStrongEdges = (edges, projection) => {
-      const strengths = edges.map((item) => item[1]).sort((a, b) => a - b);
-      const threshold = strengths[Math.floor(strengths.length * .72)] || 0;
-      edges.forEach(([position, strength]) => {
-        if (strength > threshold) projection[position] += strength - threshold;
-      });
-    };
-    projectStrongEdges(verticalEdges, verticalProjection);
-    projectStrongEdges(horizontalEdges, horizontalProjection);
-
-    const rankAxis = (projection, length) => {
-      const total = projection.reduce((sum, value) => sum + value, 0);
-      if (total < 1e-6) return [{ pitch: Math.max(2, length / 24), offset: 0, score: 0 }];
-      const ranked = [];
-      const maxPitch = Math.min(64, Math.max(3, Math.floor(length / 4)));
-      for (let pitch = 1; pitch <= maxPitch; pitch++) {
-        let correlation = 0;
-        let normA = 0;
-        let normB = 0;
-        for (let i = 1; i < length - pitch; i++) {
-          correlation += projection[i] * projection[i + pitch];
-          normA += projection[i] ** 2;
-          normB += projection[i + pitch] ** 2;
-        }
-        correlation /= Math.sqrt(normA * normB) || 1;
-        let bestPhase = { offset: 0, score: -Infinity };
-        const sigma = Math.max(.65, pitch * .12);
-        let alignmentBaseline = 0;
-        for (let remainder = 0; remainder < pitch; remainder++) {
-          const distance = Math.min(remainder, pitch - remainder);
-          alignmentBaseline += Math.exp(-.5 * (distance / sigma) ** 2);
-        }
-        alignmentBaseline /= pitch;
-        for (let offset = 0; offset < pitch; offset++) {
-          let aligned = 0;
-          for (let position = 1; position < length; position++) {
-            if (!projection[position]) continue;
-            const remainder = ((position - offset) % pitch + pitch) % pitch;
-            const distance = Math.min(remainder, pitch - remainder);
-            aligned += projection[position] * Math.exp(-.5 * (distance / sigma) ** 2);
-          }
-          let lineEnergy = 0;
-          let lineCount = 0;
-          for (let position = offset; position < length; position += pitch) {
-            lineEnergy += projection[position] + (projection[position - 1] || 0) * .5 + (projection[position + 1] || 0) * .5;
-            lineCount++;
-          }
-          const lift = (lineEnergy / Math.max(1, lineCount)) / (total / Math.max(1, length));
-          const alignmentEvidence = Math.max(0, aligned / total - alignmentBaseline);
-          const concentration = Math.max(0, Math.min(1, (lift - 1) / 3));
-          const microPitchPenalty = pitch <= 2 ? (3 - pitch) * .04 : 0;
-          const score = alignmentEvidence * .8 + concentration * .25 + correlation * .12 - microPitchPenalty;
-          if (score > bestPhase.score) bestPhase = { offset, score };
-        }
-        ranked.push({ pitch, ...bestPhase });
-      }
-      ranked.sort((a, b) => b.score - a.score);
-      const selected = [];
-      for (const candidate of ranked) {
-        if (selected.every((item) => Math.abs(item.pitch - candidate.pitch) > 1)) selected.push(candidate);
-        if (selected.length === 10) break;
-      }
-      return selected;
-    };
-
-    const xRanks = rankAxis(verticalProjection, width);
-    const yRanks = rankAxis(horizontalProjection, height);
-    const sourceRatio = height / width;
-    const preservesSourceRatio = (columns, rows) => {
-      const ratioError = Math.abs(Math.log((rows / columns) / sourceRatio));
-      const roundingTolerance = Math.max(.06, .5 / columns + .5 / rows);
-      return ratioError <= roundingTolerance;
-    };
-    const candidateMap = new Map();
-    xRanks.forEach((xCandidate) => yRanks.forEach((yCandidate) => {
-      const columns = Math.max(4, Math.min(MAX_GRID_SIZE, Math.round(width / xCandidate.pitch)));
-      const rows = Math.max(4, Math.min(MAX_GRID_SIZE, Math.round(height / yCandidate.pitch)));
-      if (!preservesSourceRatio(columns, rows)) return;
-      const squarePenalty = Math.abs(Math.log(xCandidate.pitch / yCandidate.pitch));
-      const latticeScore = (xCandidate.score + yCandidate.score) / 2 - squarePenalty * .3;
-      const key = `${columns}x${rows}`;
-      const current = candidateMap.get(key);
-      if (!current || latticeScore > current.latticeScore) candidateMap.set(key, {
-        columns, rows, latticeScore,
-        pitchX: xCandidate.pitch, pitchY: yCandidate.pitch,
-        offsetX: xCandidate.offset, offsetY: yCandidate.offset
-      });
-    }));
-
-    nativeHints.x.forEach((xCandidate) => nativeHints.y.forEach((yCandidate) => {
-      const columns = Math.max(4, Math.min(MAX_GRID_SIZE, Math.round(nativeHints.width / xCandidate.pitch)));
-      const rows = Math.max(4, Math.min(MAX_GRID_SIZE, Math.round(nativeHints.height / yCandidate.pitch)));
-      if (!preservesSourceRatio(columns, rows)) return;
-      const pitchX = xCandidate.pitch / nativeHints.scale * ratio;
-      const pitchY = yCandidate.pitch / nativeHints.scale * ratio;
-      const squarePenalty = Math.abs(Math.log(pitchX / pitchY));
-      const latticeScore = (xCandidate.score + yCandidate.score) / 2 + .15 - squarePenalty * .4;
-      const key = `${columns}x${rows}`;
-      const current = candidateMap.get(key);
-      if (!current || latticeScore > current.latticeScore) candidateMap.set(key, {
-        columns, rows, latticeScore,
-        pitchX, pitchY,
-        offsetX: xCandidate.offset / nativeHints.scale * ratio,
-        offsetY: yCandidate.offset / nativeHints.scale * ratio
-      });
-    }));
-
-    [8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256].forEach((columns) => {
-      const rows = Math.max(4, Math.min(MAX_GRID_SIZE, Math.round(columns * sourceRatio)));
-      const key = `${columns}x${rows}`;
-      if (!candidateMap.has(key)) candidateMap.set(key, { columns, rows, latticeScore: 0 });
-    });
-
-    const candidates = [];
-    for (const candidate of candidateMap.values()) {
-      const { columns, rows } = candidate;
-      let variance = 0;
-      let samples = 0;
-      for (let gy = 0; gy < rows; gy++) {
-        const y0 = Math.round(gy * height / rows);
-        const y1 = Math.max(y0 + 1, Math.round((gy + 1) * height / rows));
-        for (let gx = 0; gx < columns; gx++) {
-          const x0 = Math.round(gx * width / columns);
-          const x1 = Math.max(x0 + 1, Math.round((gx + 1) * width / columns));
-          const count = (x1 - x0) * (y1 - y0);
-          for (let c = 0; c < 4; c++) {
-            const sum = areaSum(integral[c], x0, y0, x1, y1);
-            const sumSq = areaSum(integral[c + 4], x0, y0, x1, y1);
-            variance += Math.max(0, sumSq - sum * sum / count);
-          }
-          samples += count * 4;
-        }
-      }
-      const normalizedError = variance / Math.max(1, samples * 255 * 255);
-      const complexity = .025 * columns * rows / (width * height);
-      const cellAspect = (width / columns) / (height / rows);
-      const cellAspectPenalty = Math.abs(Math.log(cellAspect)) * .012;
-      candidates.push({
-        ...candidate,
-        error: normalizedError,
-        score: normalizedError + complexity + cellAspectPenalty - candidate.latticeScore * .02
-      });
-    }
-
-    candidates.sort((a, b) => a.score - b.score);
-    const best = candidates[0] || { columns: 24, rows: Math.max(4, Math.round(24 * sourceRatio)), score: 0 };
-    const alternatives = candidates.filter((item) => Math.abs(item.columns - best.columns) >= 3 || Math.abs(item.rows - best.rows) >= 3);
-    const runnerUp = alternatives[0] || candidates[1] || best;
-    const separation = Math.max(0, runnerUp.score - best.score) / Math.max(.005, Math.abs(best.score) + Math.abs(runnerUp.score));
-    const confidence = Math.max(55, Math.min(96, Math.round(60 + separation * 110)));
-    return { ...best, confidence, analysisWidth: width, analysisHeight: height };
   }
-
   function autoDetectGrid(showToast = true) {
     if (!state.sourceImage) {
       toast(t("importFirst"));
@@ -981,39 +763,11 @@
       state.gridDetection = result;
       updateDetectionStatus();
       quantizeImage(state.sourceImage, result);
-      if (showToast) toast(t("bestGrid", { columns: result.columns, rows: result.rows }));
+      if (result.confidence < 75) toast(t("manualHint"));
+      else if (showToast) toast(t("bestGrid", { columns: result.columns, rows: result.rows }));
     }, 20));
   }
 
-  function medianCut(colors, count) {
-    if (!colors.length) return [[0, 0, 0]];
-    let buckets = [colors];
-    while (buckets.length < count) {
-      let splitIndex = -1;
-      let bestRange = -1;
-      let channel = 0;
-      buckets.forEach((bucket, i) => {
-        if (bucket.length < 2) return;
-        const min = [Infinity, Infinity, Infinity];
-        const max = [-Infinity, -Infinity, -Infinity];
-        bucket.forEach((value) => {
-          for (let c = 0; c < 3; c++) {
-            if (value[c] < min[c]) min[c] = value[c];
-            if (value[c] > max[c]) max[c] = value[c];
-          }
-        });
-        for (let c = 0; c < 3; c++) {
-          const range = max[c] - min[c];
-          if (range > bestRange) { bestRange = range; splitIndex = i; channel = c; }
-        }
-      });
-      if (splitIndex < 0) break;
-      const bucket = buckets.splice(splitIndex, 1)[0].sort((a, b) => a[channel] - b[channel]);
-      const middle = Math.ceil(bucket.length / 2);
-      buckets.push(bucket.slice(0, middle), bucket.slice(middle));
-    }
-    return buckets.map((bucket) => [0, 1, 2].map((c) => bucket.reduce((sum, value) => sum + value[c], 0) / bucket.length));
-  }
 
   function loadFile(file) {
     if (!file || !file.type.startsWith("image/")) return toast(t("validImage"));
@@ -1076,7 +830,10 @@
     clearTimeout(saveTimer);
     saveTimer = setTimeout(() => {
       try { localStorage.setItem("vexelize-project", JSON.stringify(snapshot())); } catch (_) { /* storage is optional */ }
-      $("#saveState").textContent = t("saved");
+    $("#saveState").textContent = t("saved");
+    const clearCacheBtn = $("#clearCacheBtn");
+    clearCacheBtn.title = t("clearCache");
+    clearCacheBtn.setAttribute("aria-label", t("clearCache"));
     }, 350);
   }
 
@@ -1185,10 +942,16 @@
   dropzone.addEventListener("drop", (event) => { event.preventDefault(); dropzone.classList.remove("dragging"); loadFile(event.dataTransfer.files[0]); });
 
   $("#detectGridBtn").addEventListener("click", () => autoDetectGrid());
+  $("#clearCacheBtn").addEventListener("click", () => {
+    if (!confirm(t("clearCacheConfirm"))) return;
+    try { localStorage.removeItem("vexelize-project"); } catch (_) { /* storage is optional */ }
+    makeBlankCanvas();
+    toast(t("cacheCleared"));
+  });
   $("#refineBtn").addEventListener("click", refine);
   $("#alphaThreshold").addEventListener("input", (e) => $("#alphaValue").textContent = e.target.value);
   $("#colorTolerance").addEventListener("input", (e) => $("#toleranceValue").textContent = e.target.value);
-  [$("#sampleWidth"), $("#maxColors"), $("#alphaThreshold")].forEach((el) => el.addEventListener("change", () => state.sourceImage && quantizeImage(state.sourceImage)));
+  [$("#sampleWidth"), $("#maxColors"), $("#alphaThreshold"), $("#dither")].forEach((el) => el.addEventListener("change", () => state.sourceImage && quantizeImage(state.sourceImage)));
   $("#sortPalette").addEventListener("click", () => renderPalette(true));
   $("#paletteList").addEventListener("click", (event) => {
     const item = event.target.closest(".palette-item");

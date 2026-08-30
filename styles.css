@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Jersey 10";
-  src: url("vendor/fonts/jersey-10/Jersey10-Regular.ttf") format("truetype");
+  src: url("vendor/fonts/jersey-10/Jersey10-Brand.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -19,6 +19,7 @@
   --line: #eaeef2;
   --accent: #0969da;
   --accent-dark: #0550ae;
+  --danger: #cf222e;
   --teal: #0969da;
   --shadow: 0 8px 30px rgba(31, 35, 40, .12);
   --stage: #f6f8fa;
@@ -67,6 +68,7 @@
   --line: #272c31;
   --accent: #26a641;
   --accent-dark: #39d353;
+  --danger: #f85149;
   --teal: #26a641;
   --shadow: 0 10px 34px rgba(0, 0, 0, .34);
   --stage: #151819;
@@ -157,17 +159,8 @@ input[type="number"]::-webkit-inner-spin-button {
   line-height: 1;
 }
 
-.brand-mark {
-  width: 25px;
-  height: 25px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 2px;
-  transform: rotate(45deg) scale(.82);
-}
-.brand-mark i { display: block; background: var(--ink); }
-.brand-mark i:nth-child(2), .brand-mark i:nth-child(3) { background: var(--accent); }
+.brand-mark { width: 25px; height: 25px; display: block; }
+.brand-mark rect { fill: var(--accent); }
 
 .document-title { min-width: 0; text-align: center; }
 .document-title input {
@@ -238,6 +231,21 @@ input[type="number"]::-webkit-inner-spin-button {
 .theme-sun { display: none; }
 :root[data-theme="dark"] .theme-moon { display: none; }
 :root[data-theme="dark"] .theme-sun { display: block; }
+
+.cache-clear {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-ui);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+.cache-clear:hover { border-color: var(--muted); background: var(--surface-2); }
+.cache-clear .lucide { width: 17px; height: 17px; color: var(--danger); }
 
 .workspace {
   flex: 1;

@@ -1,6 +1,8 @@
-# VEXELiZE
-
-[中文](README.md) | [English](README.en.md)
+<div align="center">
+  <img src="favicon.svg" width="72" alt="VEXELiZE 图标" />
+  <h1>VEXELiZE</h1>
+  <p><a href="README.md">中文</a> | <a href="README.en.md">English</a></p>
+</div>
 
 把“不太像像素画”的像素画，重新变得干净、整齐。
 
@@ -128,7 +130,8 @@ https://<你的 GitHub 用户名>.github.io/vexelize/
 
 - `index.html`：应用入口和界面结构。
 - `styles.css`：主题、排版和响应式布局。
-- `app.js`：编辑、格点识别、规整与 SVG 导出逻辑。
+- `app.js`：编辑、规整与 SVG 导出逻辑，以及算法的界面接入。
+- `algo.js`：格点识别与颜色量化的纯算法，不依赖界面，可独立测试。
 - `vendor/lucide/`：Lucide 图标脚本与许可证。
 - `vendor/fonts/jersey-10/`：Jersey 10 字体与 OFL 许可证。
 
