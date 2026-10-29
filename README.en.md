@@ -8,7 +8,7 @@ Turn pixel-style images that are not quite pixel art into clean, orderly artwork
 
 Vexelize finds the most likely pixel grid in an image, removes antialiasing, noise, and drift, then exports a scalable SVG. It is designed for AI-generated pixel-style images, enlarged pixel assets, and small icons with soft or uneven edges.
 
-> **[Open Vexelize online](https://kevynf.github.io/vexelize/)**  
+> **[Open Vexelize online](https://app.kevy.net/vexelize/)**
 > No account, installation, or coding knowledge required.
 
 Open the app, import an image, review the result, and download SVG. Processing happens entirely in your browser: images are never uploaded, and the downloaded project also works offline.
@@ -114,6 +114,10 @@ This combination distinguishes the true pixel size from its multiples or divisor
 
 ## Create Your Own Online Version
 
+This repository's online version is available at <https://app.kevy.net/vexelize/>.
+
+If you fork this repository, the following steps create your own online version:
+
 1. Click **Fork** in the top-right corner of this repository.
 2. In the fork, open **Settings → Pages**.
 3. Set the source to **Deploy from a branch**.
@@ -125,7 +129,7 @@ GitHub Pages publishes the static app from the repository root and updates it af
 https://<your GitHub username>.github.io/vexelize/
 ```
 
-For example, `kevynf` is available at <https://kevynf.github.io/vexelize/>. The first deployment can take a few minutes.
+The first deployment can take a few minutes.
 
 ## Project Structure
 

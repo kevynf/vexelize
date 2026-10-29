@@ -8,7 +8,7 @@
 
 Vexelize 可以自动找回图片里最可能的像素网格，清理抗锯齿、杂色和偏移，再导出可无限缩放的 SVG。它特别适合 AI 生成的近似像素画、被放大的像素素材，以及边缘不够利落的小图标。
 
-> **[打开 Vexelize 在线版，立即开始](https://kevynf.github.io/vexelize/)**
+> **[打开 Vexelize 在线版，立即开始](https://app.kevy.net/vexelize/)**
 
 打开网页，导入图片，检查效果，然后下载 SVG。所有处理都在你的浏览器中完成，图片不会上传到服务器；下载项目后也可以完全离线使用。
 
@@ -113,6 +113,10 @@ npx serve .
 
 ## 创建你自己的在线版本
 
+本仓库的在线版本：<https://app.kevy.net/vexelize/>。
+
+如果你 Fork 本项目，下面的步骤会创建属于你自己的在线版本：
+
 1. 点击本仓库右上角的 **Fork**；
 2. 在 Fork 后的仓库中打开 **Settings → Pages**；
 3. 将发布源设为 **Deploy from a branch**；
@@ -124,7 +128,7 @@ GitHub Pages 会发布仓库根目录中的静态应用，后续推送到 `main`
 https://<你的 GitHub 用户名>.github.io/vexelize/
 ```
 
-例如 GitHub 用户名为 `kevynf`，访问地址就是 <https://kevynf.github.io/vexelize/>。首次启用后可能需要等待几分钟才能访问。
+首次启用后可能需要等待几分钟才能访问。
 
 ## 项目结构
 
