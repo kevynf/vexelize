@@ -137,7 +137,7 @@ https://<你的 GitHub 用户名>.github.io/vexelize/
 - `app.js`：编辑、规整与 SVG 导出逻辑，以及算法的界面接入。
 - `algo.js`：格点识别与颜色量化的纯算法，不依赖界面，可独立测试。
 - `vendor/lucide/`：Lucide 图标脚本与许可证。
-- `vendor/fonts/jersey-10/`：Jersey 10 字体与 OFL 许可证。
+- `vendor/fonts/press-start-2p/`：Press Start 2P 字体与 OFL 许可证。
 
 ## 参与项目
 
@@ -145,4 +145,4 @@ https://<你的 GitHub 用户名>.github.io/vexelize/
 
 ## 许可证
 
-Vexelize 的项目代码采用 [MIT License](LICENSE)。Lucide Icons 使用 ISC License，Jersey 10 使用 SIL Open Font License 1.1，完整许可证文本位于对应的 `vendor/` 目录。
+Vexelize 的项目代码采用 [MIT License](LICENSE)。Lucide Icons 使用 ISC License，Press Start 2P 使用 SIL Open Font License 1.1，完整许可证文本位于对应的 `vendor/` 目录。

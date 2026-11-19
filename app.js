@@ -86,7 +86,14 @@
   }
 
   function getThemeAccent() {
-    return getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#0969da";
+    return getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#3b6ea5";
+  }
+
+  function syncThemeColorMeta() {
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) return;
+    const page = getComputedStyle(document.documentElement).getPropertyValue("--color-page").trim();
+    meta.content = page || (document.documentElement.dataset.theme === "dark" ? "#0d0f10" : "#dcdedf");
   }
 
   function applyTheme(theme, persist = true) {
@@ -95,6 +102,7 @@
     $("#themeToggle").title = dark ? t("themeToLight") : t("themeToDark");
     $("#themeToggle").setAttribute("aria-label", dark ? t("themeToLight") : t("themeToDark"));
     if (state.colorFollowsTheme) setColor(getThemeAccent(), true);
+    syncThemeColorMeta();
     if (persist) localStorage.setItem("vexelize-theme", theme);
     requestAnimationFrame(renderGrid);
   }

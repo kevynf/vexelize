@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#dcdedf" />
     <title>Vexelize - 像素画规整与 SVG 转换</title>
     <script>
       (() => {
@@ -14,9 +15,10 @@
           : (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
         document.documentElement.dataset.theme = theme;
         document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.querySelector('meta[name="theme-color"]').content = theme === "dark" ? "#0d0f10" : "#dcdedf";
       })();
     </script>
-    <link rel="preload" href="vendor/fonts/jersey-10/Jersey10-Brand.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="vendor/fonts/press-start-2p/PressStart2P-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -52,7 +54,7 @@
           <button class="tool" data-tool="picker" title="吸色 (I)" aria-label="吸色"><i data-lucide="pipette" aria-hidden="true"></i></button>
           <div class="rail-separator"></div>
           <label class="color-tool" title="选择当前颜色；右下角方格表示透明色">
-            <input id="colorPicker" type="color" value="#0969da" aria-label="当前颜色" />
+            <input id="colorPicker" type="color" value="#3b6ea5" aria-label="当前颜色" />
             <span id="colorSwatch"></span>
           </label>
           <button class="tool" id="swapColors" title="切换前景与透明色" aria-label="切换前景与透明色"><i data-lucide="arrow-left-right" aria-hidden="true"></i></button>

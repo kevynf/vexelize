@@ -138,7 +138,7 @@ The first deployment can take a few minutes.
 - `app.js`: editing, normalization, and SVG export logic, plus the UI wiring for the algorithms.
 - `algo.js`: pure grid-detection and color-quantization algorithms, UI-independent and testable in isolation.
 - `vendor/lucide/`: Lucide icon script and license.
-- `vendor/fonts/jersey-10/`: Jersey 10 font and OFL license.
+- `vendor/fonts/press-start-2p/`: Press Start 2P font and OFL license.
 
 ## Get Involved
 
@@ -146,4 +146,4 @@ Bug reports and feature ideas are welcome through **Issues**. Improvements are w
 
 ## License
 
-Vexelize source code is available under the [MIT License](LICENSE). Lucide Icons use the ISC License, and Jersey 10 uses the SIL Open Font License 1.1. Full third-party license text is included in the relevant `vendor/` directories.
+Vexelize source code is available under the [MIT License](LICENSE). Lucide Icons use the ISC License, and Press Start 2P uses the SIL Open Font License 1.1. Full third-party license text is included in the relevant `vendor/` directories.
